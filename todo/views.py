@@ -32,9 +32,9 @@ class TodoModelViewSet(ModelViewSet):
             incomplete_todos = total_todos - completed_todos
 
             data = {
-                'total_todos': total_todos,
-                'completed_todos': completed_todos,
-                'incomplete_todos': incomplete_todos,
+                'totalTodos': total_todos,
+                'completedTodos': completed_todos,
+                'incompleteTodos': incomplete_todos,
             }
 
             return Response(data)
