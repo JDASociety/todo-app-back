@@ -23,3 +23,20 @@ class TodoModelViewSet(ModelViewSet):
             return Response(serializer.data)
         except TodoModel.DoesNotExist:
             return Response({"message": "No hay tareas disponibles."}, status=status.HTTP_404_NOT_FOUND)
+
+    @action(detail=False, methods=['get'], url_path='status-todo')
+    def get_status_todo(self, request):
+        try:
+            total_todos = TodoModel.objects.count()
+            completed_todos = TodoModel.objects.filter(done=True).count()
+            incomplete_todos = total_todos - completed_todos
+
+            data = {
+                'total_todos': total_todos,
+                'completed_todos': completed_todos,
+                'incomplete_todos': incomplete_todos,
+            }
+
+            return Response(data)
+        except TodoModel.DoesNotExist:
+            return Response({"message": "No hay tareas disponibles."}, status=status.HTTP_404_NOT_FOUND)
