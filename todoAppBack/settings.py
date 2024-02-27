@@ -88,10 +88,10 @@ WSGI_APPLICATION = 'todoAppBack.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'todo_app',
+        'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
-        'HOST': 'localhost',
+        'HOST': env('DB_HOST'),
         'PORT': '5432',
     }
 }
